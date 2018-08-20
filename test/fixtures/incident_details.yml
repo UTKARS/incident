@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  incident_id: 
+  type_of_incident: 1
+  people_involved: MyText
+  other_observers: MyText
+  date_and_time: 2018-08-19 16:39:42
+  location: MyString
+
+two:
+  user_id: 
+  incident_id: 
+  type_of_incident: 1
+  people_involved: MyText
+  other_observers: MyText
+  date_and_time: 2018-08-19 16:39:42
+  location: MyString

@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p><h1> Lincoln High School </h1>
+<%# unless params[:detail] == 'true' %>
+	<%= link_to "Or Submit Detailed Report", detail_incident_form_path%>
+<%#end%>
+<p class="below_heading"> Incident Reporting Form</p>
+<%= render 'form' %>
+
+<%= link_to 'Back', incidents_path %>

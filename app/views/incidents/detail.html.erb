@@ -1,0 +1,68 @@
+<%#= javascript_include_tag 'incidents', 'data-turbolinks-track' => true %>
+<h1> Lincoln High School </h1>
+<p class="below_heading"> Incident Reporting Form</p>
+<%= form_for(@incident, html: {multipart: true}) do |f| %>
+  <% if @incident.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
+      <ul>
+      <% @incident.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= hidden_field_tag 'detail_form', 'yes' %>
+    <%= f.fields_for :incident_detail do |detail| %>
+      <div class="field">
+        <%= detail.label :type_of_incident %><br>
+        <%= detail.select :type_of_incident, options_for_select(IncidentDetail::INCIDENT_TYPES  ,detail.object.type_of_incident), {}, {:multiple => true } %>
+      </div>
+      <div class="field">
+        <%= detail.label :people_involved %><br>
+        <%= detail.text_area :people_involved, placeholder: "Name and other details of people involved (student, teacher, staff, parent, grade level)" %>
+      </div>
+      <div class="field">
+        <%= detail.label :other_observers %><br>
+        <%= detail.text_area :other_observers, placeholder: "Name and details" %>
+      </div>
+      <div class="field">
+        <%= detail.label :date_and_time %><br>
+        <%= detail.datetime_select :date_and_time %>
+      </div>
+      <div class="field">
+        <%= detail.label :location %><br>
+        <%= detail.select(:location, IncidentDetail::LOCATIONS,{ :prompt => "Please select"}, :onchange=>"showfield(this.options[this.selectedIndex].value)") %>
+      </div>
+      <div class="field" id="more_detail"></div>
+    <% end %>
+
+  <div class="field">
+    <%= f.label :description, "Description*" %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+    <h3>Your Detail</h3>
+    <%= f.fields_for :user do |u| %>
+      <div class="field">
+        <%= u.label :name, "name" %><br>
+        <%= u.text_field :name %>
+      </div>
+      <div class="field">
+        <%= u.label :email,"Email/Phone" %><br>
+        <%= u.text_field :email %>
+      </div>
+      <div class="field">
+        <%= u.label :role, "Role" %><br>
+        <%= u.select(:role, User::ROLES,{ :prompt => "Please select"}) %>
+      </div>
+    <%end%>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
