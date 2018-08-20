@@ -1,0 +1,49 @@
+<style>
+#incidents {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#incidents td, #incidents th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#incidents tr:nth-child(even){background-color: #f2f2f2;}
+
+#incidents tr:hover {background-color: #ddd;}
+
+#incidents th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+</head>
+<body>
+​
+<table id="incidents">
+  <tr>
+    <th>Description</th>
+    <th>Attachment</th>
+    <th>Action</th>
+  </tr>
+  <% @incidents.each do |incident| %>
+  <tr>
+    <td><%= incident.description %></td>
+    <td>
+      <% if incident.image.present? %>
+        <%= image_tag incident.image.url, height: "50", width: "100" %>
+      <% end %>
+    </td>
+    <td>
+      <% if incident.incident_detail.present? %>
+        <%= link_to "Detail", incident_path(incident)%>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  

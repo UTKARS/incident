@@ -2,16 +2,22 @@ class IncidentsController < ApplicationController
 
   def new
     @incident = Incident.new
-    # if params[:detail] == "true"
-    #   @incident_detail = @incident.build_incident_detail
-    #   @user = @incident.build_user
-    # end
   end
 
   def detail
     @incident = Incident.new
     @incident_detail = @incident.build_incident_detail
     @user = @incident.build_user    
+  end
+
+  def index
+    @incidents = Incident.all
+  end
+
+  def show
+    @incident = Incident.find(params[:id])
+    @incident_detail = @incident.incident_detail
+    @user = @incident.user
   end
 
 

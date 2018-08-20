@@ -1,0 +1,56 @@
+<h1>Incident Detail</h1>
+
+<p>
+  <strong>Type of incident </strong>
+  <%= @incident_detail.type_of_incident.join(", ") %>
+</p>
+ 
+<p>
+  <strong>People Involved </strong>
+  <%= @incident_detail.people_involved %>
+</p>
+
+<p>
+  <strong> Other Observers </strong>
+  <%= @incident_detail.other_observers %>
+</p>
+
+<p>
+  <strong> Date and Time </strong>
+  <%= @incident_detail.date_and_time %>
+</p>
+
+<p>
+  <strong> location </strong>
+  <%= @incident_detail.location %>
+  <%= @incident_detail.other_location %>
+</p>
+
+<p>
+  <strong>Description</strong>
+  <%= @incident.description %>
+</p>
+<% if @incident.image.present? %>
+	<p>
+	  <strong>Image</strong><br>
+	  <%= image_tag @incident.image.url, height: "100", width: "200" %>
+	</p>
+<% end %>
+
+<% if @user %>
+<h3>User Detail</h3>
+<p>
+  <strong> Name </strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong> Email/Phone </strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong> Role </strong>
+  <%= @user.role %>
+</p>
+<% end %>
