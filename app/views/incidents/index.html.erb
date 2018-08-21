@@ -26,24 +26,28 @@
 <body>
 ​
 <table id="incidents">
-  <tr>
-    <th>Description</th>
-    <th>Attachment</th>
-    <th>Action</th>
-  </tr>
-  <% @incidents.each do |incident| %>
-  <tr>
-    <td><%= incident.description %></td>
-    <td>
-      <% if incident.image.present? %>
-        <%= image_tag incident.image.url, height: "50", width: "100" %>
+  <%if @incidents.present? %>
+      <tr>
+        <th>Description</th>
+        <th>Attachment</th>
+        <th>Action</th>
+      </tr>
+      <% @incidents.each do |incident| %>
+      <tr>
+        <td><%= incident.description %></td>
+        <td>
+          <% if incident.image.present? %>
+            <%= image_tag incident.image.url, height: "50", width: "100" %>
+          <% end %>
+        </td>
+        <td>
+          <% if incident.incident_detail.present? %>
+            <%= link_to "Detail", incident_path(incident)%>
+          <% end %>
+        </td>
+      </tr>
       <% end %>
-    </td>
-    <td>
-      <% if incident.incident_detail.present? %>
-        <%= link_to "Detail", incident_path(incident)%>
-      <% end %>
-    </td>
-  </tr>
+  <%else%>
+      <tr>  <th> Currently not Available </th></tr>
   <% end %>
   
